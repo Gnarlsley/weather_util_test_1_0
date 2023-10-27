@@ -1,0 +1,15 @@
+[package]
+name = "weather_util_test_1_0"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+weather_util_rust = "0.16.10"
+anyhow = "1.0"
+assert_cmd = "2.0"
+log = "0.4"
+tokio = "1.33.0"
+dotenvy = "0.15.7"
+envy = "0.4.2"
