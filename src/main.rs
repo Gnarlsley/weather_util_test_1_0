@@ -17,9 +17,12 @@ use dotenvy::{
 #[tokio::main]
 
 async fn main() {
-    let path = Path::new("C:\\Users\\thomp\\USERPROFILE\\projects\\weather_util_test_1_0\\src\\config.env");
+    //init_config function takes type Option<Path>
+    let path = Path::new("C:\\Users\\thomp\\USERPROFILE\\projects\\weather_util_test_1_0\\src\\config.env");\
     let test_pkg = Config::init_config(Some(path)).unwrap();
+    //type config inner, holds env data
     let inner = test_pkg.deref();
+    //type weather opts holds weather data
     let opts = WeatherOpts::parse_opts(&test_pkg);
     println!("Out put is {:?}", opts.await.unwrap());
     println!("Output is {:?}", inner);
