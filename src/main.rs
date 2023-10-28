@@ -21,6 +21,7 @@ async fn main() {
     let path = Path::new("C:\\Users\\thomp\\USERPROFILE\\projects\\weather_util_test_1_0\\src\\config.env");
     let test_pkg = Config::init_config(Some(path)).unwrap();
 
+    //loads environment varibles into the scope
     dotenv().ok();
 
     //type config inner, holds env data
@@ -38,14 +39,16 @@ async fn main() {
 
     //w2.api_key = test_pkg.api_key.clone();
 
+    //create new api instance
     let api = WeatherApi::new(&env::var("API_KEY").unwrap(), &env::var("API_ENDPOINT").unwrap(), &env::var("API_PATH").unwrap(), &env::var("GEO_PATH").unwrap());
+    //fill weatherlocation enum, maybe where input will be handled
     let zipcode_location = WeatherLocation::from_zipcode(73301);
     let city_location = WeatherLocation::from_city_name("Austin, Texas");
 
 
-    let data = api.get_weather_data(&zipcode_location).await.unwrap();
+    let data = api.get_weather_data(&zipcode_location).await.unwrap(); //returns weatherdata struct
 
-    let w3 = data.get_current_conditions();
+    let w3 = data.get_current_conditions(); //returns formatted string
 
     println!("{}", w3);
 }
